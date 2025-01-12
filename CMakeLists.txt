@@ -9,6 +9,15 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 
+# Set target
+add_executable(hello_world_node src/hello_world.cpp)
+target_compile_features(hello_world_node PUBLIC c_std_99 cxx_std_17)
+ament_target_dependencies(hello_world_node rclcpp)
+install(
+	TARGETS hello_world_node
+	DESTINATION lib/${PROJECT_NAME}
+)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
